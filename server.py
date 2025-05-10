@@ -29,5 +29,29 @@ def training(prof):
     )
 
 
+@app.route('/list_prof/<list>')
+def list_prof(list):
+    professions = [
+        "Инженер-робототехник",
+        "Пилот марсохода",
+        "Космический биолог",
+        "Строитель куполов",
+        "Специалист по системам жизнеобеспечения",
+        "Геолог-исследователь",
+        "Метеоролог",
+        "Врач-космонавт"
+    ]
+
+    list_type = list.lower()
+    valid_types = {'ol', 'ul'}
+
+    return render_template(
+        'list_prof.html',
+        list_type=list_type,
+        professions=professions,
+        valid_types=valid_types
+    )
+
+
 if __name__ == '__main__':
     app.run()
