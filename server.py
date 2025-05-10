@@ -53,5 +53,21 @@ def list_prof(list):
     )
 
 
+@app.route('/answer')
+@app.route('/auto_answer')
+def auto_answer():
+    form_data = {
+        'title': 'Анкета кандидата',
+        'surname': 'Иванов',
+        'name': 'Марсианин',
+        'education': 'высшее космическое',
+        'profession': 'пилот марсохода',
+        'sex': 'male',
+        'motivation': 'Хочу стать первым колонизатором Марса!',
+        'ready': 'yes'
+    }
+    return render_template('auto_answer.html', data=form_data)
+
+
 if __name__ == '__main__':
     app.run()

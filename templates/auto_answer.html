@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Результаты анкетирования</h2>
+    
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Титул:</div>
+        <div class="col-md-8">{{ data.title }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Фамилия:</div>
+        <div class="col-md-8">{{ data.surname }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Имя:</div>
+        <div class="col-md-8">{{ data.name }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Образование:</div>
+        <div class="col-md-8">{{ data.education }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Профессия:</div>
+        <div class="col-md-8">{{ data.profession }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Пол:</div>
+        <div class="col-md-8">{{ data.sex }}</div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Мотивация:</div>
+        <div class="col-md-8">
+            <blockquote class="blockquote">
+                {{ data.motivation }}
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 fw-bold">Готовность:</div>
+        <div class="col-md-8">
+            {% if data.ready == 'yes' %}
+                <span class="badge bg-success">Готов</span>
+            {% else %}
+                <span class="badge bg-danger">Не готов</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
