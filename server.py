@@ -91,5 +91,10 @@ def upload_file():
         return render_template('upload_photo.html', photo_url=file_path)
 
 
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
