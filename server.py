@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
+import os
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'static/img'
 
 
 @app.route('/')
@@ -77,11 +79,11 @@ def upload_photo():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'photo' not in request.files:
-        return redirect(request.url)
+        return redirect(url_for('upload_photo'))
 
     file = request.files['photo']
     if file.filename == '':
-        return redirect(request.url)
+        return redirect(url_for('upload_photo'))
 
     if file:
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
@@ -90,4 +92,4 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
