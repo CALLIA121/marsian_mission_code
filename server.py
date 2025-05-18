@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -67,6 +67,26 @@ def auto_answer():
         'ready': 'yes'
     }
     return render_template('auto_answer.html', data=form_data)
+
+
+@app.route('/upload_photo')
+def upload_photo():
+    return render_template('upload_photo.html')
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'photo' not in request.files:
+        return redirect(request.url)
+
+    file = request.files['photo']
+    if file.filename == '':
+        return redirect(request.url)
+
+    if file:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+        return render_template('upload_photo.html', photo_url=file_path)
 
 
 if __name__ == '__main__':
